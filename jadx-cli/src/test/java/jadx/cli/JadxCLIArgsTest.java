@@ -9,38 +9,32 @@ import static org.junit.Assert.assertThat;
 
 public class JadxCLIArgsTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(JadxCLIArgsTest.class);
+	private static final Logger LOG = LoggerFactory.getLogger(JadxCLIArgsTest.class);
 
-  @Test
-  public void testInvertedBooleanOption() {
-    assertThat(parse("--no-replace-consts").isReplaceConsts(), is(false));
-    assertThat(parse("").isReplaceConsts(), is(true));
-  }
+	@Test
+	public void testInvertedBooleanOption() {
+		assertThat(parse("--no-replace-consts").isReplaceConsts(), is(false));
+		assertThat(parse("").isReplaceConsts(), is(true));
+	}
 
-  @Test
-  public void testEscapeUnicodeOption() {
-    assertThat(parse("--escape-unicode").isEscapeUnicode(), is(true));
-    assertThat(parse("").isEscapeUnicode(), is(false));
-  }
+	@Test
+	public void testEscapeUnicodeOption() {
+		assertThat(parse("--escape-unicode").isEscapeUnicode(), is(true));
+		assertThat(parse("").isEscapeUnicode(), is(false));
+	}
 
-  @Test
-  public void testSrcOption() {
-    assertThat(parse("--no-src").isSkipSources(), is(true));
-    assertThat(parse("-s").isSkipSources(), is(true));
-    assertThat(parse("").isSkipSources(), is(false));
-  }
+	@Test
+	public void testSrcOption() {
+		assertThat(parse("--no-src").isSkipSources(), is(true));
+		assertThat(parse("-s").isSkipSources(), is(true));
+		assertThat(parse("").isSkipSources(), is(false));
+	}
 
-  @Test
-  public void testDeobfuscationOnOff() {
-    assertThat(parse("--deobf").isDeobfuscationOn(), is(true));
-    // assertThat(parse("--deobf").isDeobfuscationOn(), is(false));
-  }
-
-  private JadxCLIArgs parse(String... args) {
-    JadxCLIArgs jadxArgs = new JadxCLIArgs();
-    boolean res = jadxArgs.processArgs(args);
-    assertThat(res, is(true));
-    LOG.info("Jadx args: {}", jadxArgs.toJadxArgs());
-    return jadxArgs;
-  }
+	private JadxCLIArgs parse(String... args) {
+		JadxCLIArgs jadxArgs = new JadxCLIArgs();
+		boolean res = jadxArgs.processArgs(args);
+		assertThat(res, is(true));
+		LOG.info("Jadx args: {}", jadxArgs.toJadxArgs());
+		return jadxArgs;
+	}
 }
