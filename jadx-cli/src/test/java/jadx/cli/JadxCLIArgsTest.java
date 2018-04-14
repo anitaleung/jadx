@@ -30,6 +30,12 @@ public class JadxCLIArgsTest {
 		assertThat(parse("").isSkipSources(), is(false));
 	}
 
+	@Test
+  public void testDeobfuscationOnOff() {
+    assertThat(parse("--deobf").isDeobfuscationOn(), is(true));
+    // assertThat(parse("--deobf").isDeobfuscationOn(), is(false));
+  }
+
 	private JadxCLIArgs parse(String... args) {
 		JadxCLIArgs jadxArgs = new JadxCLIArgs();
 		boolean res = jadxArgs.processArgs(args);
